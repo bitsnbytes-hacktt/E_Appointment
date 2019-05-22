@@ -55,9 +55,9 @@
             <tbody>
                 {% for admin in admins %}
                 <tr>
-                    <td>{{admin.name}}</td>
-                    <td>{{admin.email}}</td>
-                    <td>{{admin.password}}</td>
+                    <td>{{admin.theuser.name}}</td>
+                    <td>{{admin.theuser.email}}</td>
+                    <td>{{admin.theuser.password}}</td>
                 </tr>
                 {% endfor %}
             </tbody>
