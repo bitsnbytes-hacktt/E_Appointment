@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <title>HAHD</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+
+  <body>
+    
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div class="container-fluid">
+
+            <span class="navbar-text"> {{name}} </span>
+            
+            <ul class="navbar-nav navbar-right">
+                <li class-"nav-item">
+                    <a class="nav-link" href="/head_admin_home/create"> Create </a>
+                </li>
+                <li class-"nav-item">
+                    <a class="nav-link" href="/head_admin_home/delete"> Delete </a>
+                </li>
+                <li class-"nav-item">
+                    <a class="nav-link" href="/head_admin_home/view"> View </a>
+                </li>
+                <li class-"nav-item">
+                    <a class="nav-link" href="/head_admin_home/logout"> Logout </a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+
+    <div class="container">
+        <hr>
+        <h1 class="page-header text-center"> Delete administrator account </h1>
+    </div>
+
+    <div class="container">
+        <hr>
+        <form method="POST" action="/head_admin_home/delete">
+            {{ form.csrf_token }}
+
+            <div class="form-group">
+                {{ form.email.label(class="form-control-label") }}
+                {{ form.email(class="form-control form-control-lg" , placeholder="Enter Email") }}
+            </div>
+            
+            <input type="submit" class="btn btn-primary"  value="Delete">
+        </form>
+    </div>
+
+
+    
+    
+  </body>
+
+</html>
