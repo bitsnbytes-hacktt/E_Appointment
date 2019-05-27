@@ -1,5 +1,6 @@
 <html>
 <head>
+
 <title>layout testing</title>
 
 <!-- Required meta tags -->
@@ -7,35 +8,95 @@
  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes" />
 
 
-
 <!-- Bootstrap CSS -->
  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+ 
 
-<!-- Navbar -->
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-        <div class="container-fluid">
-            <span class="navbar-text">T&T Ministry Appointment System</span>
-            
-            <ul class="navbar-nav navbar-right">
-                <li class-"nav-item">
-                    <a class="nav-link" href="/user_home/logout"> Logout </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+<style>
+
+* {
+  box-sizing: border-box;
+}
+
+/* Container for flexboxes */
+section {
+  display: -webkit-flex;
+  display: flex;
+}
+    
+/* Style the navigation menu */
+nav {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  background: #ccc;
+  padding: 20px;
+} 
+
+/* Style the list inside the menu */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul{
+  list-style-type: square;
+  text-align: left;
+  border-style:solid;
+  border-width: 1px 1px;
+}
+
+li{
+    padding:5px 15px;
+    position: inherit;
+}
+
+aside{
+    padding-top: 40px;
+}
+</style>
+
 </head>
+
+</script>
 
 
 <body>
-<!-- calendar -->
-    <div class = "container-fluid">
-        {% block content %} {% endblock content %}
-    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <div class="container-fluid">
+                <span class="navbar-text">T&T Ministry Appointment System</span>
+                <ul class="navbar-nav navbar-right">
+                    <li class-"nav-item">
+                        <a class="nav-link" href="/user_home/logout"> Logout </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    
+    <section>
+            <!-- calendar -->    
+            <div class = "calendar">
+                <!--<h1>This is {{user_name}}'s calendar</h1>-->
+                {% block content %} {% endblock content %}
+            </div>
+            <aside>
+                    <ul> 
+                            {% for post in posts %}
+                                <li>
+                                    <p>{{post.appt}}</p>
+                                    <p>{{post.day}}/{{post.month}}/{{post.year}} @ {{post.hour}}:{{post.min}}</p>
+                                </li>
+                            {% endfor %}
+                        </u2>
+            </aside>
+    </section>
 
 </body>
+
+
+
+
+
 </html>
-
-   
-
-
-    

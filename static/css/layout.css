@@ -1,0 +1,18 @@
+/*
+* {
+  box-sizing: border-box;
+}
+
+
+section {
+  display: -webkit-flex;
+  display: flex;
+}
+
+
+
+/*
+put the navbar in a container, then use the {%blcok%} function inside a 
+section/article within the container
+*/
+
