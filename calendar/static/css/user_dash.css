@@ -1,0 +1,121 @@
+
+/*something for the modal?*/
+:root{
+    --modal-duration: 1s;
+    --modal-color: #428bca;
+}
+
+/*body of page*/
+.column {
+    float: right;
+    padding: 5px;
+    /*height: 300px; Should be removed. Only for demonstration */
+}
+  
+.right {
+    width: 65%;
+    height: auto;
+}
+  
+.left {
+    width: 35%;
+    height: auto;
+}
+  
+/* Clear floats after the columns */
+.rowb:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/*left column formatting*/
+ul{
+    list-style-type: none;
+    text-align: left;
+    border-style:solid;
+    border-width: 1px 1px 1px 1px;
+    padding: 5px 5px 5px 5px;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px #C3C3C3;
+    background-color: #ffffff;
+    font-family: inherit;
+}
+  
+li{
+    padding:0px 15px;
+    position: inherit;
+    background-color:inherit;
+    font-family: inherit;
+}
+
+/*make appt button styling*/
+.button {
+    background: #de2103; 
+    /*background: #428bca;*/
+    padding: 1em 2em;
+    color: #fff;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .button:hover {
+    background: #cec9c9;
+    color: #000000;
+  }
+  
+  .modal{
+    display: none; 
+    position: fixed;
+    z-index:10;
+    left:0;
+    top:0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5)
+  
+  }
+  
+  .modal-content{
+    background-color: #f4f4f4f4;
+    padding: 50px;
+    width: 70%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+    /*animation-name: openModal;*/
+    /*animation-duration: var(--modal-duration);*/
+  }
+  
+  .modal-body {
+    padding: 10px 20px;
+    background: #fff;
+  }
+  
+  .closeBtn{
+    color: #000000;
+    float: right;
+    font-size: 30px;
+  }
+  
+  .closeBtn.hover, .closeBtn.focus{
+    color: #ffffff;
+    text-decoration:none;
+    cursor: pointer;
+  }
+
+  /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+    .column {
+      width: 100%;
+    }
+  }
+
+  @keyframes modalopen {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
