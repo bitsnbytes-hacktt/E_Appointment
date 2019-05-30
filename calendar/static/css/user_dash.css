@@ -13,13 +13,15 @@
 }
   
 .right {
-    width: 65%;
+    width: 60%;
     height: auto;
+    padding-top: 20px;
 }
   
 .left {
-    width: 35%;
+    width: 40%;
     height: auto;
+    padding-top: 20px;
 }
   
 /* Clear floats after the columns */
@@ -30,7 +32,7 @@
 }
 
 /*left column formatting*/
-ul{
+.left ul{
     list-style-type: none;
     text-align: left;
     border-style:solid;
@@ -42,18 +44,27 @@ ul{
     font-family: inherit;
 }
   
-li{
+.left li{
     padding:0px 15px;
     position: inherit;
     background-color:inherit;
     font-family: inherit;
 }
 
+.rowla{
+    padding: 10 0 15 0;
+    /*border-style: dotted;*/
+}
+
+.rowlb{
+    padding: 1 1 1 1;
+}
+
 /*make appt button styling*/
 .button {
     background: #de2103; 
     /*background: #428bca;*/
-    padding: 1em 2em;
+    padding: 1em 3.5em;
     color: #fff;
     border: 0;
     border-radius: 5px;
@@ -61,18 +72,17 @@ li{
   }
   
   .button:hover {
-    background: #cec9c9;
+    background: #ff5757;
     color: #000000;
   }
   
   .modal{
     display: none; 
-    position: fixed;
-    z-index:10;
+    position: absolute;
+    z-index: 15;
     left:0;
     top:0;
-    height: 100%;
-    width: 100%;
+    bottom: auto;
     overflow: auto;
     background-color: rgba(0,0,0,0.5)
   
@@ -80,22 +90,31 @@ li{
   
   .modal-content{
     background-color: #f4f4f4f4;
-    padding: 50px;
-    width: 70%;
-    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+    top: 20%; left: 20%; right:20%; bottom:20%;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-right: 5px;
+    padding-left: 20px;
+    height: auto;
+    width: 60%;
+    text-align: left;
+    /*box-shadow: 5px 5px 5px 5px rgba(172, 13, 13, 0.2), 5px 5px 5px 5px rgba(20, 230, 16, 0.17);*/
     /*animation-name: openModal;*/
     /*animation-duration: var(--modal-duration);*/
   }
   
-  .modal-body {
-    padding: 10px 20px;
+  /*.modal-body {
+    padding: 5 5 5 5;
     background: #fff;
-  }
+  }*/
   
   .closeBtn{
     color: #000000;
+    padding: 1 1 1 1;
+    width: 15px;
+    align-content: right;
     float: right;
-    font-size: 30px;
+    cursor: pointer;
   }
   
   .closeBtn.hover, .closeBtn.focus{
@@ -104,18 +123,10 @@ li{
     cursor: pointer;
   }
 
+
   /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
     .column {
       width: 100%;
-    }
-  }
-
-  @keyframes modalopen {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
     }
   }

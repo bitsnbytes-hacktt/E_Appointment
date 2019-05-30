@@ -1,10 +1,18 @@
 from flask import Flask, render_template
 from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField
+from wtforms import SelectField
 
 app = Flask(__name__)
 app.config['SECRET_KEY']='test03'
 
+#------ Forms
+class MinistryPickForm(FlaskForm):
+    ministry=SelectField('ministry', choices=[])
+    department=SelectField('department', choices=[])
+    location=SelectField('location', choices=[])
 
+#------ Array holding appointments
 posts = [ 
     {
         'appt': 'Renewal',
@@ -56,7 +64,8 @@ posts = [
 
 @app.route('/')
 def index():
-    return render_template( 'user_dash.html', user_name='Jane Doe', posts=posts) 
+    form=MinistryPickForm()
+    return render_template( 'user_dash.html', user_name='Jane Doe', posts=posts, form=form) 
 
 if __name__ == '__main__':
     app.run(debug=True)

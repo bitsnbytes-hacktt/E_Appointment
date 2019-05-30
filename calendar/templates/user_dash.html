@@ -5,6 +5,7 @@
  <!---javascript files -->
  <link href="{{ url_for( 'static' , filename='css/user_dash.css') }}" rel='stylesheet' />
 
+
 <div class="rowb">
 
     <!--place calendar on this side-->
@@ -81,7 +82,7 @@
                     }
                 
                 #wrap {
-                    width: auto;
+                    width: max-content;
                     margin: 0 0 0 0;
                     }
                 
@@ -120,7 +121,7 @@
                 
                 #calendar {
                     float: center; 
-                    position:relative;
+                    position: relative;
                     /*z-index: ;*/
                     margin: 0 0 0 0;
                     border:solid black 1px;
@@ -142,8 +143,27 @@
 
     <!--place list of appts and make new appt on this side-->
     <div class="column left">
-
-        <div class="container-fluid">    
+        <div class="rowla">
+            <div class="container-fluid">
+                <button id="modalBtn" class="button">Make New Appointment </button>
+                <div id="my_modal" class="modal" style="float: left;">
+                    <div class="modal-content">
+                        <p class="closeBtn">&times; </p>
+                            <form method="post">
+                                {{form.csrf_taken}}
+                                <br>
+                                Ministry {{form.ministry}}
+                                <br>
+                                Department{{form.department}}
+                                <br>
+                                Location{{form.location}}
+                            </form>
+                    </div>
+                </div>
+                <script src="{{ url_for( 'static' , filename='js/modalfunc.js') }}" type="text/javascript"></script>
+            </div>
+        </div>
+        <div class="rowlb">    
             <ul>
                 <h2 style="text-align: center" style="word-wrap: normal">List of your appointments</h2> 
                 {% for post in posts %}
