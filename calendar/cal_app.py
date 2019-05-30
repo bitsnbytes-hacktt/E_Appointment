@@ -6,23 +6,11 @@ from wtforms import SelectField
 app = Flask(__name__)
 app.config['SECRET_KEY']='test03'
 
-#------ Forms
-class MinistryPickForm(FlaskForm):
-    ministry=SelectField('ministry', choices=[])
-    department=SelectField('department', choices=[])
-    location=SelectField('location', choices=[])
 
+#python cal_app.py
 #------ Array holding appointments
 posts = [ 
-    {
-        'appt': 'Renewal',
-        'day': 15,
-        'month': 4,
-        'year': 2019,
-        'hour': 8,
-        'min': 20,
-        'period':30
-    },
+   
     {
         'appt': 'Application',
         'day': 16,
@@ -30,7 +18,7 @@ posts = [
         'year': 2019,
         'hour': 10,
         'min': 30,
-        'period':45
+        'period':30
     },
     {
         'appt': 'Exam',
@@ -61,11 +49,20 @@ posts = [
     }
 ]
 
+#------ Forms
+class MinistryPickForm(FlaskForm):
+    ministry=SelectField('ministry', choices=[] )
+    department=SelectField('department', choices=[])
+    location=SelectField('location', choices=[])
 
 @app.route('/')
-def index():
+def home():
+    return render_template('welcome.html')
+
+@app.route('/user-dash')
+def dash():
     form=MinistryPickForm()
-    return render_template( 'user_dash.html', user_name='Jane Doe', posts=posts, form=form) 
+    return render_template( 'user_dash.html', posts=posts, form=form) 
 
 if __name__ == '__main__':
     app.run(debug=True)

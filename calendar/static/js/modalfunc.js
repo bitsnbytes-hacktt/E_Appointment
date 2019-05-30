@@ -20,4 +20,5 @@ function openModal (){
 //function to close modal
 function closeModal (){
     modal.style.display ='none';
+    document.location.reload();
 }
