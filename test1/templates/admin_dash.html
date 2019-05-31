@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block navigation %}
+
+    <style>
+    nav ul{
+        list-style-type: none;
+        padding: 0;
+        border: none;
+    }
+    nav li{
+        list-style-type: none;
+        border: none;
+        padding: 0;
+    }
+    
+    </style>
+    
+    <ul class="navbar-nav navbar-right">              
+        <li class="nav-item">
+            <a> <img src="static/img/Profile_image.png" alt="Avatar" width ="50" height= "50" > </a> 
+        </li>
+        <p class="lead"> {{fname}} {{lname}} </p> 
+        <a class="nav-link" href="/user_dash/logout"> Logout </a>    
+    </ul>
+
+{% endblock navigation %}
+
+{% block content %}
+
+<a href="/adminSettings"><button class="btn btn-primary"> Enter settings! </button></a>
+<a href="/adminaddMin"><button class="btn btn-primary"> Enter Ministry </button></a>
+<a href="/adminaddlocation"><button class="btn btn-primary"> Enter Location! </button></a>
+<a href="/adminadddepartment"><button class="btn btn-primary"> Enter Department! </button></a>
+
+{% endblock content %}
+

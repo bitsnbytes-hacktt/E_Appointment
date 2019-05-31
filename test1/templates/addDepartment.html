@@ -1,0 +1,17 @@
+<form method="POST" >
+    {{form.csrf_token}}
+         <br>  
+         <div class="form-group">    
+        Ministry {{form.ministry}}
+      </div>
+        <br>
+        <div class="form-group">
+        Department {{form.department(placeholder="Enter new department")}}
+      </div>
+        <br>
+        <div class="form-group">
+        Location {{form.location}}
+      </div>
+        <br> 
+        <input type="submit" class="btn btn-primary" id="addbtn2" value="Add">
+        </form>

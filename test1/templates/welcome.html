@@ -1,0 +1,46 @@
+
+    {% extends "layout.html" %}
+
+    {% block content %}
+    <style>
+    .btn{
+        background-color: #de2103;
+        color: #FFff;
+        outline-color: #de2103;
+    }
+    .btn-primary{
+        border-color: #de2103; 
+    }
+
+    .btn:hover{
+        background: #ff5757;
+        color: #000000;
+        border-color: #ff5757;
+    }
+    </style>
+
+    <div class="container">
+        <h1 class="page-header text-center"> Welcome! </h1>
+        <p class="lead text-center">
+            This site allows you to make appointments for different T&T ministries.
+        </p>
+    </div>
+
+    <div class="container text-center">
+            <hr>
+            <p class="lead">
+                New user? 
+            </p>
+            <a href="/user_register"><button class="btn btn-primary"> Register </button></a>
+
+            <p></p>
+            
+            <p class="lead">
+                Have an account? 
+            </p>
+            <a href="/user_login"><button class="btn btn-primary"> Login </button></a>
+
+            <a href="{{url_for('reset_request')}}"><button class="btn btn-primary"> Forgot password? </button></a>
+        </div>
+
+    {% endblock content %}

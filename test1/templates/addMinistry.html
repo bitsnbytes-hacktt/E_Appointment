@@ -1,0 +1,10 @@
+<form method="POST" >
+    {{form.csrf_token}}
+         <br>  
+         <div class="form-group">    
+        Ministry {{form.ministry(placeholder="Insert Ministry Name")}}
+      </div>
+    
+
+        <input type="submit" class="btn btn-primary" id="addbtn" value="Add">
+        </form>

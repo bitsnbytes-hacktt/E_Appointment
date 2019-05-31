@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block navigation %}
+
+    <style>
+    nav ul{
+        list-style-type: none;
+        padding: 0;
+        border: none;
+    }
+    nav li{
+        list-style-type: none;
+        border: none;
+        padding: 0;
+    }
+    
+    </style>
+    
+    <ul class="navbar-nav navbar-right">              
+        <li class="nav-item">
+            <a> <img src="static/img/Profile_image.png" alt="Avatar" width ="50" height= "50" > </a> 
+        </li>
+        <p class="lead"> {{fname}} {{lname}} </p> 
+        <a class="nav-link" href="/user_dash/logout"> Logout </a>    
+    </ul>
+
+{% endblock navigation %}
+
+{% block content %}
+
+<div class="container">
+    <form method="POST" action="/head_admin_dash">
+        {{ form.csrf_token }}
+
+        <div class="form-group">
+            {{ form.email.label(class="form-control-label") }}
+            {{ form.email(class="form-control form-control-lg" , placeholder="Enter Email") }}
+        </div>
+   
+        <input type="submit" class="btn btn-primary"  value="Make Administrator">
+    </form>
+</div>
+
+{% endblock content %}
+
