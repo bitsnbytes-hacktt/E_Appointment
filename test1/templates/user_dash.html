@@ -1,0 +1,275 @@
+{% extends "layout.html" %}
+
+{% block navigation %}
+
+    <style>
+    nav ul{
+        list-style-type: none;
+        padding: 0;
+        border: none;
+    }
+    nav li{
+        list-style-type: none;
+        border: none;
+        padding: 0;
+    }
+    
+    </style>
+    
+    <ul class="navbar-nav navbar-right">              
+        <li class="nav-item">
+            <a> <img src="static/img/Profile_image.png" alt="Avatar" width ="50" height= "50" > </a> 
+        </li>
+        <p class="lead"> {{fname}} {{lname}} </p> 
+        <a class="nav-link" href="/user_dash/logout"> Logout </a>    
+    </ul>
+
+{% endblock navigation %}
+
+{% block content %}
+
+ <!---javascript files -->
+<link href="{{ url_for( 'static' , filename='css/user_dash.css') }}" rel='stylesheet' />
+
+<div class="rowb">
+
+    <!--place calendar on this side-->
+    <div class="column right">
+        <div class="calendar">
+                
+
+                <!---javascript files -->
+                     <link href="{{ url_for( 'static' , filename='css/fullcalendar.css') }}" rel='stylesheet' />
+                     
+                     <link href="{{ url_for( 'static' , filename='css/fullcalendar.print.css') }}" rel='stylesheet' media='print' />
+                     <script src="{{ url_for( 'static' , filename='js/jquery-1.10.2.js') }}" type="text/javascript"></script>
+                     <script src="{{ url_for( 'static' , filename='js/jquery-ui.custom.min.js') }}" type="text/javascript"></script>
+                     <script src="{{ url_for( 'static' , filename='js/fullcalendar.js') }}" type="text/javascript"></script>
+                      
+                <script>
+                     $(document).ready(function() {
+                        var date = new Date();
+                        var d = date.getDate(); 
+                        var m = date.getMonth();
+                        var y = date.getFullYear(); 
+                        
+                        /* initialize the calendar
+                        -----------------------------------------------------------------*/
+                
+                        var calendar =  $('#calendar').fullCalendar({
+                            header: {
+                                left: 'title',
+                                center: 'agendaDay,agendaWeek,month',
+                                right: 'prev,next today'
+                            },
+                            editable: false,
+                            firstDay: 0, //  1(Monday) this can be changed to 0(Sunday) for the USA system
+                            selectable: true,
+                            defaultView: 'month',
+                
+                            axisFormat: 'h:mm',
+                            columnFormat: {
+                                month: 'ddd',    // Mon
+                                week: 'ddd d', // Mon 7
+                                day: 'dddd M/d',  // Monday 9/7
+                                agendaDay: 'dddd d'
+                            },
+                            titleFormat: {
+                                month: 'MMMM yyyy', // September 2009
+                                week: "MMMM yyyy", // September 2009
+                                day: 'MMMM yyyy'                  // Tuesday, Sep 8, 2009
+                            },
+                            allDaySlot: false,
+                
+                            events: [
+                                {% for post in posts %}
+                                    {
+                                        title: '{{post.appt}}',
+                                        start: new Date( {{post.year}} , {{post.month}} , {{post.day}} , {{post.hour}} , {{post.min}} ),
+                                        end: new Date( {{post.year}} , {{post.month}} , {{post.day}} , {{post.hour}} , {{post.min}}+{{post.period}}  ),
+                                        allDay: false,
+                                    },
+                                {% endfor %}
+                            ],
+                        });
+                
+                    });
+                
+                </script>
+                
+                <style>
+                body {
+                    /*margin-top: 40px; */
+                    text-align: center;
+                    font-size: 14px;
+                    font-family: "Helvetica Nueue",Arial,Verdana,sans-serif;
+                    background-color: rgb(225, 221, 221);
+                    }
+                
+                #wrap {
+                    width: max-content;
+                    margin: 0 0 0 0;
+                    }
+                
+                #external-events {
+                    /*float: left;*/
+                    width: 150px;
+                    padding: 0 10px;
+                    text-align: left;
+                    }
+                
+                #external-events h4 {
+                    font-size: 16px;
+                    margin-top: 0;
+                    padding-top: 1em;
+                    }
+                
+                .external-event { /* try to mimick the look of a real event */
+                    margin: 10px 0;
+                    padding: 2px 4px;
+                    background: #3366CC;
+                    color: #fff;
+                    font-size: .85em;
+                    cursor: pointer;
+                    }
+                
+                #external-events p {
+                    margin: 1.5em 0;
+                    font-size: 11px;
+                    color: #666;
+                    }
+                
+                #external-events p input {
+                    margin: 0;
+                    vertical-align: middle;
+                    }
+                
+                #calendar {
+                    float: center; 
+                    position: relative;
+                    /*z-index: ;*/
+                    margin: 0 0 0 0;
+                    border:solid black 1px;
+                    width: 720px;
+                    background-color: #FFFFFF;
+                    border-radius: 6px;
+                    box-shadow: 0 1px 2px #C3C3C3;
+                    }
+                
+                </style>
+                
+                <div id='wrap'>
+                    <div id='calendar'></div>
+                    <div style='clear:both'></div>
+                </div>
+                        
+        </div>
+    </div> <!--enddiv for the right column-->
+
+    <!--place list of appts and make new appt on this side-->
+    <div class="column left">
+        <div class="rowla">
+            <div class="container-fluid">
+                <button id="modalBtn" class="button">Make New Appointment </button>
+                <div id="my_modal" class="modal" style="float: left;">
+                    <div class="modal-content">
+                        <p class="closeBtn">&times; </p>
+                        <p>Modal content below</p>
+                        <div class="bootstrap-iso">
+                            <form method="POST" action="/appointment/make">
+                                {{form.csrf_token}}
+                                <br>      
+                                Ministry {{form.ministry(placeholder="Choose Ministry")}}
+                                <br>
+                                Department {{form.department(placeholder="Choose Department")}}
+                                    <br>
+                                Location {{form.location(placeholder="Choose Location")}}
+                                <br> 
+                                <br> 
+                                <br> 
+                                Date {{form.date(placeholder="Choose Date")}}
+                                <br> 
+                                <br> 
+                                <br> 
+                                Time {{form.time(placeholder="Choose Time")}}
+                                <br> 
+                                <br> 
+                                <input type="submit" class="btn btn-primary"  value="Make Appointment!">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <script src="{{ url_for( 'static' , filename='js/modalfunc.js') }}" type="text/javascript"></script>
+            </div>
+        </div>
+        <div class="rowlb">    
+            <ul>
+                <h2 style="text-align: center" style="word-wrap: normal">List of your appointments</h2> 
+                {% for post in posts %}
+                <li>
+                    <p>{{post.appt}}</p>
+                    <p>{{post.day}}/{{post.month}}/{{post.year}} @ {{post.hour}}:{{post.min}} - {{post.hour}}:{{post.min + post.period}}</p>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div> <!--enddiv for left column-->
+
+    
+
+</div> <!--enddiv for the overall rowb-->
+
+
+<script>
+    let department_select = document.getElementById('department');
+    let ministry_select = document.getElementById('ministry');
+    let location_select=document.getElementById('location');
+    let date_select=document.getElementById('date');
+    let time_select=document.getElementById('time');
+
+    ministry_select.onchange=function(){
+      ministry= ministry_select.value; 
+      fetch ('/appointment/'+ ministry).then(function(response){
+         response.json().then(function(data1){    
+              var optionHTML1='';
+               for( var department of data1.departments){
+                   optionHTML1 += '<option value= " ' + department.id + '" >'+ department.name + '</option>';
+               }
+                department_select.innerHTML=optionHTML1;
+          });
+      });
+    }
+  
+    department_select.onchange=function(){
+      departments=department_select.value;
+      ministries=ministry_select.value;
+      fetch ('/appointment/'+ ministries + '/' + departments).then(function(response){
+         response.json().then(function(data2){      
+              var optionHTML2='';
+               for( var location of data2.locations){
+                   optionHTML2 += '<option value= " ' + location.id + '" >'+ location.name + '</option>';
+               }
+                location_select.innerHTML=optionHTML2;
+          });
+      });
+    }
+
+    date_select.onchange=function(){
+        //alert(date.value);
+        //optionHTML3 = '<option value= " ' + 9 + '" >'+ 9 + '</option>';
+        //time_select.innerHTML=optionHTML3;
+
+        fetch ('/query_test').then(function(response){
+            response.json().then(function(data3){      
+                var optionHTML3='';
+                for( var time of data3.times){
+                    optionHTML3 += '<option value= " ' + time.id + '" >'+ time.name + '</option>';
+                }
+                    time_select.innerHTML=optionHTML3;
+            });
+        });
+    }
+</script>
+
+{% endblock content %}
+

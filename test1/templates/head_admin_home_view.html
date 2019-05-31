@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <title>HAHV</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+
+  <body>
+    
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div class="container-fluid">
+
+            <span class="navbar-text"> {{name}} </span>
+            
+            <ul class="navbar-nav navbar-right">
+                <li class-"nav-item">
+                    <a class="nav-link" href="/head_admin_home/create"> Create </a>
+                </li>
+                <li class-"nav-item">
+                    <a class="nav-link" href="/head_admin_home/delete"> Delete </a>
+                </li>
+                <li class-"nav-item">
+                    <a class="nav-link" href="/head_admin_home/view"> View </a>
+                </li>
+                <li class-"nav-item">
+                    <a class="nav-link" href="/head_admin_home/logout"> Logout </a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+
+    <div class="container">
+        <hr>
+        <h1 class="page-header text-center"> All admin users </h1>
+    </div>
+    <div class="container">
+        <hr>
+        <table class="table table-hover">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Password</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for admin in admins %}
+                <tr>
+                    <td>{{admin.name}}</td>
+                    <td>{{admin.email}}</td>
+                    <td>{{admin.password}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+    </div>
+
+    
+    
+  </body>
+
+</html>

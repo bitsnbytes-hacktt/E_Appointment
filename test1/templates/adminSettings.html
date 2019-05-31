@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+ 
+<form method="POST" >
+    {{form.csrf_token}}
+         <br>  
+         <div class="form-group">    
+        Ministry {{form.ministry}}
+      </div>
+        <br>
+        <div class="form-group">
+        Department {{form.department(placeholder="Choose Department")}}
+      </div>
+        <br>
+        <div class="form-group">
+        Location {{form.location(placeholder="Choose Location")}}
+      </div>
+        <br> 
+     
+        <br> 
+        
+        <div class="form-group">
+          {{ form.startTime.label(class="form-control-label") }}
+          {{ form.startTime(class="form-control form-control-lg" , placeholder="Enter Day Start Time") }}
+          
+      </div>
+      <br>
+      <div class="form-group">
+          {{ form.endTime.label(class="form-control-label") }}
+          {{ form.endTime(class="form-control form-control-lg" , placeholder="Enter Day End Time") }}
+      </div>
+        <br> 
+    
+        <br> 
+        <div class="form-group">
+        Max Capacity per Period {{form.capacity}}
+      </div>
+        <br>
+        <div class="form-group">
+        Period : HR:{{form.periodH}} Min: {{form.periodM}}
+      </div>
+        <br>
+
+        <input type="submit" class="btn btn-primary" id="setbtn" value="Set">
+        </form>
+        {% with messages =get_flashed_messages() %}
+          {% if messages %}
+            {% for message in messages %}
+              <h3> {{message}} </h3>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+      
+<script>
+ let department_select = document.getElementById('department');
+ let ministry_select = document.getElementById('ministry');
+ let location_select=document.getElementById('location');
+
+
+ ministry_select.onchange=function(){
+   ministry= ministry_select.value;
+   
+   fetch ('/appointment/'+ ministry).then(function(response){
+
+      response.json().then(function(data1){
+             
+           var optionHTML1='';
+
+
+
+            for( var department of data1.departments){
+                optionHTML1 += '<option value= " ' + department.id + '" >'+ department.name + '</option>';
+
+            }
+
+             department_select.innerHTML=optionHTML1;
+       });
+
+
+   });
+ }
+
+ department_select.onchange=function(){
+   departments=department_select.value;
+   ministries=ministry_select.value;
+   alert(departments);
+   fetch ('/appointment/'+ ministries + '/' + departments).then(function(response){
+
+      response.json().then(function(data2){
+             
+           var optionHTML2='';
+
+
+
+            for( var location of data2.locations){
+                optionHTML2 += '<option value= " ' + location.id + '" >'+ location.name + '</option>';
+
+            }
+
+             location_select.innerHTML=optionHTML2;
+       });
+
+
+   });
+
+ }
+</script>
+
+
+
+ </html>

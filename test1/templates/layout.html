@@ -1,0 +1,38 @@
+<html>
+
+<head>
+
+<title>Layout Inheritance</title>
+
+<!-- Required meta tags -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link href="{{ url_for( 'static' , filename='css/layout.css') }}" rel='stylesheet' />
+
+</head>
+
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-inverse navbar-static-top" style="background-color: #ffffff;">
+
+    <div class="container-fluid navbar-expand-md">
+        <img src="static/img/header.png"  alt="eappoint Icon" style="width: inherit;">
+    </div>
+
+    <div class="navbar-brand" href="#">
+        <img src="static/img/Banner.png"  alt="eappoint Icon" style="max-width: 400px" >
+    </div>             
+
+    {% block navigation %} {% endblock navigation %}
+</nav>
+
+<div id="content"> {% block content %} {% endblock content %} </div>
+
+</body>
+
+</html>

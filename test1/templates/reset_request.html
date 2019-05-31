@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block content %}
+<style>
+  .btn{
+      background-color: #de2103;
+      color: #FFff;
+      outline-color: #de2103;
+  }
+  .btn-primary{
+      border-color: #de2103; 
+  }
+
+  .btn:hover{
+      background: #ff5757;
+      color: #000000;
+      border-color: #ff5757;
+  }
+  </style>
+
+    <div class="container">
+        <hr>
+        <h1 class="page-header text-center"> Request password reset </h1>
+    </div>
+
+    <div class="container">
+        <hr>
+        <form method="POST" action="">
+            {{ form.csrf_token }}
+
+            <div class="form-group">
+                {{ form.email.label(class="form-control-label") }}
+                {{ form.email(class="form-control form-control-lg" , placeholder="Enter Email") }}
+            </div>
+        
+            <input type="submit" class="btn btn-primary"  value="Request">
+        </form>
+    </div>
+    {% endblock content %}

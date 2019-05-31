@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<style>
+    .btn{
+        background-color: #de2103;
+        color: #FFff;
+        outline-color: #de2103;
+    }
+    .btn-primary{
+        border-color: #de2103; 
+    }
+
+    .btn:hover{
+        background: #ff5757;
+        color: #000000;
+        border-color: #ff5757;
+    }
+    </style>
+    <div class="container">
+        <h1 class="page-header text-center"> Login </h1>
+    </div>
+
+    <div class="container">
+        <form method="POST" action="/user_login">
+            {{ form.csrf_token }}
+
+            <div class="form-group">
+                {{ form.email.label(class="form-control-label") }}
+                {{ form.email(class="form-control form-control-lg" , placeholder="Enter Email") }}
+            </div>
+            <div class="form-group">
+                {{ form.password.label(class="form-control-label") }}
+                {{ form.password(class="form-control form-control-lg" , placeholder="Enter Password") }}
+            </div>
+            
+            <input type="submit" class="btn btn-primary"  value="Login">
+        </form>
+    </div>
+    {% endblock content %}
